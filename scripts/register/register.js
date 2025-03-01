@@ -3,21 +3,40 @@ document.getElementById("register-form").addEventListener("submit", function(eve
     
     const nameInput = document.getElementById("name");
     const cpfInput = document.getElementById("cpf");
+    const phoneInput = document.getElementById("phone");
     const name = nameInput.value.trim();
     const cpf = cpfInput.value.replace(/\D/g, ""); // Remove caracteres não numéricos
-    
+    const phone = phoneInput.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+
+    // Limpa mensagens de erro anteriores
+    document.getElementById("name-error").textContent = '';
+    document.getElementById("cpf-error").textContent = '';
+    document.getElementById("phone-error").textContent = '';
+
+    let valid = true;
+
+    // Validação do nome
     if (!validarNome(name)) {
-        alert("Nome inválido. Insira pelo menos um nome e um sobrenome.");
-        return;
+        document.getElementById("name-error").textContent = "Nome inválido. Insira pelo menos um nome e um sobrenome.";
+        valid = false;
     }
 
+    // Validação do CPF
     if (!validarCPF(cpf)) {
-        alert("CPF inválido. O CPF deve conter 11 dígitos numéricos.");
-        return;
+        document.getElementById("cpf-error").textContent = "CPF inválido. O CPF deve conter 11 dígitos numéricos.";
+        valid = false;
     }
-    
+
+    // Validação do telefone
+    if (!validarTelefone(phone)) {
+        document.getElementById("phone-error").textContent = "Telefone inválido. Insira um número válido.";
+        valid = false;
+    }
+
     // Se todos os campos forem válidos, o formulário pode ser enviado
-    this.submit();
+    if (valid) {
+        this.submit();
+    }
 });
 
 function validarNome(nome) {
@@ -47,3 +66,16 @@ function validarCPF(cpf) {
     
     return true;
 }
+
+function validarTelefone(phone) {
+    return phone.length >= 10 && phone.length <= 11;
+}
+
+// Impedir a digitação de caracteres não numéricos no CPF e telefone
+document.getElementById("cpf").addEventListener("input", function(event) {
+    this.value = this.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+});
+
+document.getElementById("phone").addEventListener("input", function(event) {
+    this.value = this.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+});

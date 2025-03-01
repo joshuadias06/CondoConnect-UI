@@ -112,9 +112,12 @@ body, html {
 .bottom-buttons a:hover {
     text-decoration: underline;
 }
-/* Estilos de erro */
+
 .error-message {
     color: red;
     font-size: 12px;
-    margin-top: 5px;
+    margin-top: 2px;  /* Ajuste fino para deixar a mensagem bem colada ao campo */
+    margin-bottom: 10px; /* Espaço para separar da próxima mensagem de erro ou do próximo campo */
 }
+
+

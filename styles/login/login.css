@@ -109,7 +109,7 @@ body, html {
     bottom: 0;
     display: flex;
     justify-content: center;
-    gap: 50px;  /* Aumentei o espaço entre os links */
+    gap: 100px;  /* Aumentei o espaço entre os botões */
 }
 
 .bottom-buttons a {

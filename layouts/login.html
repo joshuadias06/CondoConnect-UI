@@ -12,24 +12,26 @@
     <div class="container">
         <div class="left-side"></div>
         <div class="right-side">
-            <!-- Logo no canto superior -->
+            <!-- Logo no topo do right-side -->
             <img src="/assets/login/logo.png" alt="Logo" class="logo">
-            <!-- Formulário de login -->
-            <form class="login-form">
+
+            <form class="login-form" id="login-form">
                 <h2>Acesse o CondoConnect</h2>
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
                 <label for="senha">Senha</label>
                 <input type="password" id="senha" name="senha" required>
                 <a href="#" class="forgot-password">Esqueci a senha</a>
-                <button type="submit">Entrar</button>
+                <button type="submit" id="submit-btn" disabled>Entrar</button>
             </form>
-            <!-- Div dos botões -->
             <div class="bottom-buttons">
                 <a href="#" class="register">Cadastre-se</a>
                 <a href="#" class="resident-portal">Portal do Morador</a>
             </div>
         </div>
     </div>
+
+    <!-- Referência ao arquivo JS com o caminho correto -->
+    <script src="/scripts/login/login.js"></script>
 </body>
 </html>

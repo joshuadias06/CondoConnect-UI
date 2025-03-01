@@ -16,11 +16,9 @@ body, html {
 
 .left-side {
     flex: 1;
-    background-image: url('assets/login/moradores.jpg');
+    background-image: url('/assets/login/moradores.jpg');
     background-size: cover;
     background-position: center;
-    filter: blur(8px);
-    position: relative;
 }
 
 .right-side {
@@ -28,10 +26,13 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
 }
 
-.login-form {
+.form-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
 }

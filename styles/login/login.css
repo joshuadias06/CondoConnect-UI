@@ -35,9 +35,10 @@ body, html {
     background-color: white;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
+    border: none;  /* Remover a borda */
+    box-shadow: none;  /* Remover o box-shadow */
 }
 
 .login-form h2 {
@@ -92,7 +93,7 @@ body, html {
     background-color: #FFD898;
     width: 100%;
     text-align: center;
-    padding: 45px 0; /* Aumentei a altura da div */
+    padding: 15px 0; /* Aumentei a altura da div */
     position: absolute;
     bottom: 0;
     display: flex;

@@ -27,6 +27,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .login-form {
@@ -54,7 +55,7 @@ body, html {
     border: none;
     border-bottom: 2px solid #ccc;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 16px;
 }
 
@@ -66,8 +67,43 @@ body, html {
     font-size: 16px;
     cursor: pointer;
     color: white;
+    border-radius: 5px; /* Bordas arredondadas */
 }
 
 .login-form button:hover {
     background-color: #e18717;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 10px;
+    color: blue;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.bottom-buttons {
+    background-color: #FFD898;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.bottom-buttons a {
+    color: #F1A526;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.bottom-buttons a:hover {
+    text-decoration: underline;
 }

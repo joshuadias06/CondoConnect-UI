@@ -6,7 +6,7 @@
 
 body, html {
     height: 100%;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif; /* Fonte moderna */
 }
 
 .container {
@@ -33,9 +33,9 @@ body, html {
 
 .login-form {
     background-color: white;
-    padding: 80px;  /* Aumentei o padding */
+    padding: 90px;
     border-radius: 10px;
-    width: 500px;  /* Aumentei a largura do formulário */
+    width: 600px;
     text-align: left;
     border: none;
     box-shadow: none;
@@ -57,13 +57,13 @@ body, html {
     border: none;
     border-bottom: 2px solid #ccc;
     padding: 12px;
-    margin-bottom: 10px;  /* Aproximar o input do botão */
+    margin-bottom: 10px;
     font-size: 16px;
 }
 
 .login-form .forgot-password {
     display: block;
-    margin-top: 5px;  /* Deixei mais próximo do input */
+    margin-top: 5px;
     color: blue;
     text-decoration: none;
     font-size: 14px;
@@ -82,34 +82,33 @@ body, html {
     cursor: pointer;
     color: white;
     border-radius: 5px;
-    margin-top: 15px;  /* Aumentei a distância entre o input e o botão */
+    margin-top: 15px;
     display: flex;
-    justify-content: center;  /* Centraliza o conteúdo */
-    align-items: center;  /* Centraliza verticalmente */
-    gap: 8px;  /* Ajusta o espaço entre o texto e a seta */
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
 .login-form button::after {
-    content: "→"; /* Adiciona a seta dentro do botão */
+    content: "→";
     font-size: 20px;
-    color: white;  /* Cor da seta */
+    color: white;
 }
 
 .login-form button:hover {
     background-color: #e18717;
 }
 
-/* Estilo da div dos botões */
 .bottom-buttons {
     background-color: #FFD898;
     width: 100%;
     text-align: center;
-    padding: 40px 0;  /* Aumentei o padding para aumentar a altura */
+    padding: 40px 0;
     position: absolute;
     bottom: 0;
     display: flex;
     justify-content: center;
-    gap: 100px;  /* Aumentei o espaço entre os botões */
+    gap: 100px;
 }
 
 .bottom-buttons a {

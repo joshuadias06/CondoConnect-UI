@@ -113,11 +113,29 @@ body, html {
     text-decoration: underline;
 }
 
+/* Estilos de erro */
 .error-message {
     color: red;
     font-size: 12px;
-    margin-top: 2px;  /* Ajuste fino para deixar a mensagem bem colada ao campo */
-    margin-bottom: 10px; /* Espaço para separar da próxima mensagem de erro ou do próximo campo */
+    margin-top: 5px;  /* Um pequeno espaço entre o campo e a mensagem de erro */
+    margin-bottom: 20px; /* Espaço entre a mensagem de erro e o próximo campo */
 }
 
+/* Ícone de alerta no campo com erro */
+.input-container {
+    position: relative;
+}
 
+.input-container .error-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: red;
+    font-size: 18px; /* Tamanho do ícone de alerta */
+}
+
+/* Estilo para os campos de input quando houver erro */
+input.error {
+    border-color: red; /* Adiciona borda vermelha no campo com erro */
+}

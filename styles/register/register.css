@@ -121,11 +121,12 @@ body, html {
     margin-bottom: 20px; /* Espaço entre a mensagem de erro e o próximo campo */
 }
 
-/* Ícone de alerta no campo com erro */
+/* Container para os campos de input */
 .input-container {
     position: relative;
 }
 
+/* Ícone de alerta no campo com erro */
 .input-container .error-icon {
     position: absolute;
     top: 50%;
@@ -133,9 +134,16 @@ body, html {
     transform: translateY(-50%);
     color: red;
     font-size: 18px; /* Tamanho do ícone de alerta */
+    visibility: hidden; /* Inicialmente invisível */
 }
 
-/* Estilo para os campos de input quando houver erro */
+/* Exibe o ícone de alerta e a borda vermelha no campo com erro */
+input.error + .error-message,
+input.error + .error-message + .error-icon {
+    visibility: visible;
+}
+
+/* Estilo para os campos de input com erro */
 input.error {
     border-color: red; /* Adiciona borda vermelha no campo com erro */
 }

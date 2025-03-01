@@ -16,7 +16,7 @@ document.getElementById("register-form").addEventListener("submit", function(eve
     document.getElementById("cpf-error").textContent = '';
     document.getElementById("phone-error").textContent = '';
     document.getElementById("password-error").textContent = '';
-    document.querySelectorAll('.error-icon').forEach(icon => icon.style.display = 'none'); // Esconde ícones de erro anteriores
+    document.querySelectorAll('.error-icon').forEach(icon => icon.style.visibility = 'hidden'); // Esconde ícones de erro anteriores
     document.querySelectorAll('input').forEach(input => input.classList.remove('error')); // Remove a classe de erro
 
     let valid = true;
@@ -52,7 +52,7 @@ document.getElementById("register-form").addEventListener("submit", function(eve
     // Exibir o ícone de alerta nos campos com erro
     document.querySelectorAll('input.error').forEach(input => {
         const icon = input.closest('.input-container').querySelector('.error-icon');
-        if (icon) icon.style.display = 'block';
+        if (icon) icon.style.visibility = 'visible'; // Mostra o ícone de erro
     });
 
     // Se todos os campos forem válidos, o formulário pode ser enviado

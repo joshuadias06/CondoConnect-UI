@@ -84,8 +84,9 @@ body, html {
     border-radius: 5px;
     margin-top: 15px;  /* Aumentei a distância entre o input e o botão */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;  /* Centraliza o conteúdo */
+    align-items: center;  /* Centraliza verticalmente */
+    gap: 8px;  /* Ajusta o espaço entre o texto e a seta */
 }
 
 .login-form button::after {

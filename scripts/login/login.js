@@ -6,6 +6,7 @@ const form = document.getElementById('login-form');
 
 // Verificar a validade dos campos
 function validateForm() {
+    // Verifica se o email é válido e a senha não está vazia
     if (emailInput.validity.valid && senhaInput.value.trim() !== "") {
         submitButton.disabled = false; // Ativar o botão
     } else {
@@ -13,7 +14,7 @@ function validateForm() {
     }
 }
 
-// Adicionar os ouvintes de eventos
+// Adicionar os ouvintes de eventos para os campos de input
 emailInput.addEventListener('input', validateForm);
 senhaInput.addEventListener('input', validateForm);
 

@@ -19,6 +19,7 @@ body, html {
     background-image: url('/assets/login/moradores.jpg');
     background-size: cover;
     background-position: center;
+    height: 100vh;
 }
 
 .right-side {

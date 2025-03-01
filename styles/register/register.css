@@ -1,0 +1,114 @@
+/* Estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-side {
+    flex: 1;
+    background-image: url('/assets/register/moradores.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.right-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    width: 150px;
+    height: auto;
+}
+
+.register-form {
+    background-color: white;
+    padding: 120px;
+    border-radius: 10px;
+    width: 650px;
+    text-align: left;
+    border: none;
+    box-shadow: none;
+}
+
+.register-form h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.register-form label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.register-form input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.register-form button {
+    width: 100%;
+    padding: 14px;
+    background-color: #F1A526;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.register-form button:hover {
+    background-color: #e18717;
+}
+
+.bottom-buttons {
+    background-color: #FFD898;
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+}
+
+.bottom-buttons a {
+    color: #F1A526;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.bottom-buttons a:hover {
+    text-decoration: underline;
+}

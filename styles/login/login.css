@@ -33,22 +33,22 @@ body, html {
 
 .login-form {
     background-color: white;
-    padding: 50px;  /* Aumentei o padding */
+    padding: 60px;  /* Aumentei o padding */
     border-radius: 10px;
-    width: 400px;  /* Aumentei a largura do formulário */
-    text-align: center;
+    width: 450px;  /* Aumentei a largura do formulário */
+    text-align: left;  /* Alinhamento do texto para a esquerda */
     border: none;
     box-shadow: none;
 }
 
 .login-form h2 {
-    margin-bottom: 30px;  /* Aumentei o espaço inferior */
+    margin-bottom: 30px;
+    font-size: 24px;  /* Aumentei o tamanho da fonte */
 }
 
 .login-form label {
     display: block;
-    margin-bottom: 12px;  /* Aumentei o espaço abaixo dos labels */
-    text-align: left;
+    margin-bottom: 12px;
     font-size: 16px;
 }
 
@@ -56,14 +56,14 @@ body, html {
     width: 100%;
     border: none;
     border-bottom: 2px solid #ccc;
-    padding: 12px;  /* Aumentei o padding */
-    margin-bottom: 15px;  /* Aumentei o espaço abaixo dos inputs */
+    padding: 12px;
+    margin-bottom: 15px;
     font-size: 16px;
 }
 
 .login-form button {
     width: 100%;
-    padding: 12px;  /* Aumentei o padding */
+    padding: 12px;
     background-color: #F1A526;
     border: none;
     font-size: 16px;
@@ -78,7 +78,7 @@ body, html {
 
 .forgot-password {
     display: block;
-    margin-top: 12px;  /* Aumentei a margem superior */
+    margin-top: 12px;
     color: blue;
     text-decoration: none;
     font-size: 14px;
@@ -93,17 +93,17 @@ body, html {
     background-color: #FFD898;
     width: 100%;
     text-align: center;
-    padding: 25px 0;  /* Aumentei o padding para aumentar a altura */
+    padding: 30px 0;  /* Aumentei o padding para aumentar a altura */
     position: absolute;
     bottom: 0;
     display: flex;
     justify-content: center;
-    gap: 25px;  /* Aumentei o espaço entre os links */
+    gap: 30px;  /* Aumentei o espaço entre os links */
 }
 
 .bottom-buttons a {
     color: #F1A526;
-    font-size: 16px;  /* Aumentei o tamanho da fonte */
+    font-size: 16px;
     text-decoration: none;
 }
 

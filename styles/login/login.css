@@ -43,16 +43,7 @@ body, html {
 
 .login-form h2 {
     margin-bottom: 30px;
-    font-size: 26px;  /* Aumentei o tamanho da fonte */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.login-form h2::after {
-    content: "→"; /* Adiciona a seta */
-    font-size: 20px;
-    color: #F1A526;  /* Cor da seta */
+    font-size: 26px;
 }
 
 .login-form label {
@@ -92,6 +83,15 @@ body, html {
     color: white;
     border-radius: 5px;
     margin-top: 15px;  /* Aumentei a distância entre o input e o botão */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-form button::after {
+    content: "→"; /* Adiciona a seta dentro do botão */
+    font-size: 20px;
+    color: white;  /* Cor da seta */
 }
 
 .login-form button:hover {

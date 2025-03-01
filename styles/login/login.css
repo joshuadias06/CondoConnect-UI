@@ -33,21 +33,21 @@ body, html {
 
 .login-form {
     background-color: white;
-    padding: 40px;
+    padding: 50px;  /* Aumentei o padding */
     border-radius: 10px;
-    width: 300px;
+    width: 400px;  /* Aumentei a largura do formulário */
     text-align: center;
-    border: none;  /* Remover a borda */
-    box-shadow: none;  /* Remover o box-shadow */
+    border: none;
+    box-shadow: none;
 }
 
 .login-form h2 {
-    margin-bottom: 20px;
+    margin-bottom: 30px;  /* Aumentei o espaço inferior */
 }
 
 .login-form label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 12px;  /* Aumentei o espaço abaixo dos labels */
     text-align: left;
     font-size: 16px;
 }
@@ -56,20 +56,20 @@ body, html {
     width: 100%;
     border: none;
     border-bottom: 2px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 12px;  /* Aumentei o padding */
+    margin-bottom: 15px;  /* Aumentei o espaço abaixo dos inputs */
     font-size: 16px;
 }
 
 .login-form button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;  /* Aumentei o padding */
     background-color: #F1A526;
     border: none;
     font-size: 16px;
     cursor: pointer;
     color: white;
-    border-radius: 5px; /* Bordas arredondadas */
+    border-radius: 5px;
 }
 
 .login-form button:hover {
@@ -78,7 +78,7 @@ body, html {
 
 .forgot-password {
     display: block;
-    margin-top: 10px;
+    margin-top: 12px;  /* Aumentei a margem superior */
     color: blue;
     text-decoration: none;
     font-size: 14px;
@@ -93,17 +93,17 @@ body, html {
     background-color: #FFD898;
     width: 100%;
     text-align: center;
-    padding: 15px 0; /* Aumentei a altura da div */
+    padding: 25px 0;  /* Aumentei o padding para aumentar a altura */
     position: absolute;
     bottom: 0;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;  /* Aumentei o espaço entre os links */
 }
 
 .bottom-buttons a {
     color: #F1A526;
-    font-size: 14px;
+    font-size: 16px;  /* Aumentei o tamanho da fonte */
     text-decoration: none;
 }
 

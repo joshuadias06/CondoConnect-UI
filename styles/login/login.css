@@ -43,7 +43,7 @@ body, html {
     background-color: white;
     padding: 120px;
     border-radius: 10px;
-    width: 650px; /* Aumentei a largura do formulário */
+    width: 650px;
     text-align: left;
     border: none;
     box-shadow: none;
@@ -51,7 +51,7 @@ body, html {
 
 .login-form h2 {
     margin-bottom: 30px;
-    font-size: 28px; /* Aumentei o tamanho da fonte */
+    font-size: 28px;
 }
 
 .login-form label {
@@ -65,7 +65,7 @@ body, html {
     border: none;
     border-bottom: 2px solid #ccc;
     padding: 12px;
-    margin-bottom: 20px; /* Aumentei o espaço entre os campos */
+    margin-bottom: 20px;
     font-size: 16px;
 }
 
@@ -74,7 +74,7 @@ body, html {
     margin-top: 5px;
     color: blue;
     text-decoration: none;
-    font-size: 16px; /* Aumentei o tamanho da fonte */
+    font-size: 16px;
 }
 
 .login-form .forgot-password:hover {
@@ -83,10 +83,10 @@ body, html {
 
 .login-form button {
     width: 100%;
-    padding: 14px; /* Aumentei o tamanho do botão */
+    padding: 14px;
     background-color: #F1A526;
     border: none;
-    font-size: 18px; /* Aumentei o tamanho da fonte do botão */
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     color: white;
@@ -112,17 +112,17 @@ body, html {
     background-color: #FFD898;
     width: 100%;
     text-align: center;
-    padding: 60px 0; /* Aumentei a altura da div inferior */
+    padding: 40px 0; /* Diminuí o padding da div inferior */
     position: absolute;
     bottom: 0;
     display: flex;
     justify-content: center;
-    gap: 150px; /* Aumentei o espaço entre os botões */
+    gap: 150px;
 }
 
 .bottom-buttons a {
     color: #F1A526;
-    font-size: 18px; /* Aumentei o tamanho da fonte dos botões inferiores */
+    font-size: 18px;
     text-decoration: none;
 }
 

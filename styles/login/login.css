@@ -33,9 +33,9 @@ body, html {
 
 .logo {
     position: absolute;
-    top: 20px;  /* Ajusta a distância do topo */
-    left: 20px; /* Ajusta a distância da esquerda */
-    width: 150px; /* Ajuste o tamanho conforme necessário */
+    top: 10px;  /* Diminuí a distância do topo */
+    left: 20px; /* Mantive a distância da esquerda */
+    width: 150px; /* Diminuí o tamanho da logo */
     height: auto;
 }
 
@@ -87,6 +87,7 @@ body, html {
     background-color: #F1A526;
     border: none;
     font-size: 16px;
+    font-weight: bold; /* Texto em negrito */
     cursor: pointer;
     color: white;
     border-radius: 5px;

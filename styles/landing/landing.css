@@ -10,13 +10,25 @@ body, html {
     font-family: 'Poppins', sans-serif;
 }
 
+/* Reset de Estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
 /* Menu Superior */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
-    padding: 20px;
+    padding: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
@@ -24,12 +36,18 @@ body, html {
 }
 
 .header .logo img {
-    height: 50px;
+    height: 100px;  /* Aumenta a logo sem afetar o layout */
+    width: auto;
     transition: transform 0.3s;
 }
 
 .header .logo img:hover {
     transform: scale(1.1);
+}
+
+.login-btn-container {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .btn-enter {
@@ -47,6 +65,8 @@ body, html {
 .btn-enter:hover {
     background-color: #e18717;
 }
+
+/* Restante do código para seções, rodapé, etc. */
 
 /* Seção Hero (Imagem de Fundo) */
 .hero-section {
@@ -158,18 +178,80 @@ body, html {
 .footer {
     background-color: #F1A526;
     color: #ffffff;
-    padding: 20px;
+    padding: 40px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
+    margin-top: 60px;
 }
 
 .footer .footer-left p {
     font-size: 14px;
 }
 
+.footer .footer-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.footer .footer-right .footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer .footer-right .footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer .footer-right .footer-links a:hover {
+    text-decoration: underline;
+}
+
 .footer .footer-right img {
     height: 40px;
     filter: brightness(0) invert(1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header {
+        padding: 15px;
+    }
+
+    .header .logo img {
+        height: 40px;
+    }
+
+    .hero-text h1 {
+        font-size: 40px;
+    }
+
+    .about-project .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-project .container .text-content,
+    .about-project .container .creative-content {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer .footer-right {
+        gap: 20px;
+    }
+
+    .footer .footer-left p {
+        margin-bottom: 10px;
+    }
 }

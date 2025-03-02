@@ -1,0 +1,116 @@
+/* Reset de Estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo do Documento */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f3f4f6;
+}
+
+/* Menu Superior */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo img {
+    height: 40px;
+}
+
+.btn-enter {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-enter:hover {
+    background-color: #45a049;
+}
+
+/* Seção Hero (Imagem de Fundo) */
+.hero-section img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+/* Seção sobre o Projeto */
+.about-project {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: #ffffff;
+    color: #333;
+}
+
+.about-project .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.text-content {
+    flex: 1;
+}
+
+.text-content h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.text-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.creative-content {
+    flex: 1;
+    text-align: center;
+}
+
+.creative-content h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.creative-content img {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    border-radius: 8px;
+}
+
+/* Rodapé */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer .footer-left p {
+    font-size: 14px;
+}
+
+.footer .footer-right img {
+    height: 40px;
+}

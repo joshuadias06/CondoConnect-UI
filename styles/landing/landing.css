@@ -6,9 +6,14 @@
 }
 
 /* Corpo do Documento */
-body {
+body, html {
+    height: 100%;
     font-family: 'Roboto', sans-serif;
-    background-color: #f3f4f6;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
 }
 
 /* Menu Superior */
@@ -26,7 +31,7 @@ body {
 }
 
 .btn-enter {
-    background-color: #4CAF50;
+    background-color: #F1A526;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -36,7 +41,7 @@ body {
 }
 
 .btn-enter:hover {
-    background-color: #45a049;
+    background-color: #e18717;
 }
 
 /* Seção Hero (Imagem de Fundo) */
@@ -99,8 +104,8 @@ body {
 
 /* Rodapé */
 .footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #FFD898;
+    color: #333;
     padding: 20px;
     display: flex;
     justify-content: space-between;

@@ -60,6 +60,7 @@ body, html {
     border-radius: 25px;
     font-weight: 600;
     transition: background-color 0.3s ease-in-out;
+    margin-right: 35px;
 }
 
 .btn-enter:hover {
@@ -195,6 +196,7 @@ body, html {
     justify-content: space-between;
     align-items: center;
     gap: 40px;
+    margin-left: auto;  /* Coloca o conteúdo do rodapé à direita */
 }
 
 .footer .footer-right .footer-links {
@@ -216,6 +218,7 @@ body, html {
     height: 40px;
     filter: brightness(0) invert(1);
 }
+
 
 /* Responsividade */
 @media (max-width: 768px) {

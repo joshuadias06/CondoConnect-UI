@@ -25,6 +25,8 @@ document.getElementById('register-form').addEventListener('submit', function(eve
         password: password
     };
 
+    console.log("Enviando requisição para o backend...", registerData);
+
     // Requisição para o backend
     fetch('http://localhost:8080/auth/register', {
         method: 'POST',
@@ -34,20 +36,27 @@ document.getElementById('register-form').addEventListener('submit', function(eve
         body: JSON.stringify(registerData),
     })
     .then(response => {
-        if (response.ok) {
-            return response.json(); // Converte a resposta em JSON se a resposta for bem-sucedida
-        } else {
-            throw new Error('Erro ao registrar usuário');
+        if (!response.ok) {
+            return response.json().then(err => { throw new Error(err.message || 'Erro ao registrar usuário'); });
         }
+        return response.json();
     })
     .then(data => {
-        // Caso o cadastro seja bem-sucedido
+        console.log("Resposta do backend:", data);
+
         alert('Cadastro realizado com sucesso!');
-        window.location.href = '/login'; // Redireciona para a página de login após sucesso
+
+        // Se o backend retornar um token no cadastro, podemos salvar
+        if (data.token) {
+            localStorage.setItem('authToken', data.token);
+        }
+
+        // Redireciona para a página de login após sucesso
+        window.location.href = '/login';
     })
     .catch(error => {
         console.error('Erro ao realizar cadastro:', error);
-        alert('Ocorreu um erro. Tente novamente.');
+        alert(`Erro: ${error.message || 'Ocorreu um erro. Tente novamente.'}`);
     })
     .finally(() => {
         // Reabilitar o botão de submit

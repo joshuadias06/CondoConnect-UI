@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Produtos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/catalogo.css">
+    <link rel="icon" href="/assets/login/logo.png" type="image/png">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="/assets/login/logo.png" alt="Logo">
+        </div>
+    </header>
+
+    <main class="catalogo-container">
+        <h1>Produtos</h1>
+        <div class="filtros">
+            <input type="text" id="search" placeholder="Pesquisar produtos...">
+            <select id="filter">
+                <option value="">Todos</option>
+                <option value="categoria1">Categoria 1</option>
+                <option value="categoria2">Categoria 2</option>
+            </select>
+        </div>
+        <div id="produtos" class="produtos-grid"></div>
+
+        <h2>Adicionados Recentemente</h2>
+        <div id="recentes" class="produtos-grid"></div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 CondoConnect. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="/scripts/catalogo.js"></script>
+</body>
+</html>

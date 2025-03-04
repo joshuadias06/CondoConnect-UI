@@ -3,10 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const recentesContainer = document.getElementById("recentes");
     const searchInput = document.getElementById("search");
     const filterSelect = document.getElementById("filter");
-    
+
     async function carregarProdutos() {
         try {
-            const response = await fetch("/produtos");
+            const response = await fetch("http://localhost:8080/produtos"); // URL correta do back-end
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
             const produtos = await response.json();
             renderizarProdutos(produtos);
             renderizarRecentes(produtos);
@@ -14,21 +17,23 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Erro ao carregar produtos:", error);
         }
     }
-    
+
     function renderizarProdutos(produtos) {
         produtosContainer.innerHTML = "";
         produtos.forEach(produto => {
             const produtoElemento = document.createElement("div");
             produtoElemento.classList.add("produto");
             produtoElemento.innerHTML = `
+                <img src="${produto.img}" alt="${produto.nome}" class="produto-img">
                 <h3>${produto.nome}</h3>
                 <p>${produto.descricao}</p>
-                <span>R$ ${produto.preco.toFixed(2)}</span>
+                <p><strong>Proprietário:</strong> ${produto.proprietario}</p>
+                <p><strong>Contato:</strong> ${produto.telefone}</p>
             `;
             produtosContainer.appendChild(produtoElemento);
         });
     }
-    
+
     function renderizarRecentes(produtos) {
         recentesContainer.innerHTML = "";
         const recentes = produtos.slice(-4);
@@ -36,22 +41,24 @@ document.addEventListener("DOMContentLoaded", () => {
             const produtoElemento = document.createElement("div");
             produtoElemento.classList.add("produto");
             produtoElemento.innerHTML = `
+                <img src="${produto.img}" alt="${produto.nome}" class="produto-img">
                 <h3>${produto.nome}</h3>
                 <p>${produto.descricao}</p>
-                <span>R$ ${produto.preco.toFixed(2)}</span>
+                <p><strong>Proprietário:</strong> ${produto.proprietario}</p>
+                <p><strong>Contato:</strong> ${produto.telefone}</p>
             `;
             recentesContainer.appendChild(produtoElemento);
         });
     }
-    
-    searchInput.addEventListener("input", (e) => {
-        const termo = e.target.value.toLowerCase();
-        const produtosFiltrados = [...document.querySelectorAll(".produto")].filter(produto => 
-            produto.textContent.toLowerCase().includes(termo)
-        );
-        produtosContainer.innerHTML = "";
-        produtosFiltrados.forEach(produto => produtosContainer.appendChild(produto));
+
+    searchInput.addEventListener("input", () => {
+        const termo = searchInput.value.toLowerCase();
+        const produtos = document.querySelectorAll(".produto");
+        produtos.forEach(produto => {
+            const texto = produto.textContent.toLowerCase();
+            produto.style.display = texto.includes(termo) ? "block" : "none";
+        });
     });
-    
+
     carregarProdutos();
 });

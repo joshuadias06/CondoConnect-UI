@@ -10,18 +10,6 @@ body, html {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Reset de Estilos */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body, html {
-    height: 100%;
-    font-family: 'Poppins', sans-serif;
-}
-
 /* Menu Superior */
 .header {
     display: flex;

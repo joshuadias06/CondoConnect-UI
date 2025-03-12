@@ -13,15 +13,57 @@ body {
 /* Cabeçalho */
 .header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
     padding: 10px 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header .logo img {
-    height: 60px;
+    height: 60px; /* Ajuste da logo */
     width: auto;
+    transition: transform 0.3s;
+}
+
+.header .logo img:hover {
+    transform: scale(1.1); /* Efeito de hover na logo */
+}
+
+/* Menu */
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Espaço entre os itens */
+}
+
+.menu li {
+    display: inline-block;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 15px;
+    display: inline-block;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Efeito de Hover nas Letras */
+.menu a:hover {
+    color: #F1A526; /* Muda a cor do texto ao passar o mouse */
+}
+
+/* Conta do Usuário */
+.user-icon img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
 }
 
 /* Container do Catálogo */

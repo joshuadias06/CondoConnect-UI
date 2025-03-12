@@ -44,6 +44,7 @@ document.getElementById('register-form').addEventListener('submit', function(eve
     .then(data => {
         console.log("Resposta do backend:", data);
 
+        // Mostrar o alert de sucesso
         alert('Cadastro realizado com sucesso!');
 
         // Se o backend retornar um token no cadastro, podemos salvar
@@ -51,8 +52,11 @@ document.getElementById('register-form').addEventListener('submit', function(eve
             localStorage.setItem('authToken', data.token);
         }
 
-        // Redireciona para a página de login após sucesso
-        window.location.href = '/login';
+        // Aguardar um pouco para o usuário ver o alert antes de redirecionar
+        setTimeout(() => {
+            // Redireciona para a página de login após sucesso
+            window.location.href = 'http://127.0.0.1:5500/layouts/login.html';
+        }, 1500); // Atraso de 1,5 segundos para o alert aparecer
     })
     .catch(error => {
         console.error('Erro ao realizar cadastro:', error);

@@ -32,10 +32,8 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         if (data.token) {
             // Salvar o token JWT no localStorage
             localStorage.setItem('authToken', data.token);
-            alert('Login bem-sucedido!');
-
             
-            window.location.href = '/layouts/product.htmls';
+            window.location.href = 'http://127.0.0.1:5500/layouts/product.html';
         } else {
             alert('Login falhou. Verifique suas credenciais.');
         }

@@ -30,12 +30,12 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     .then(response => response.json())
     .then(data => {
         if (data.token) {
-            // Salvar o token JWT no localStorage (ou sessionStorage)
+            // Salvar o token JWT no localStorage
             localStorage.setItem('authToken', data.token);
             alert('Login bem-sucedido!');
 
-            // Redirecionar ou atualizar a UI, por exemplo
-            window.location.href = '/dashboard';  // Ou qualquer outra página
+            
+            window.location.href = '/layouts/product.htmls';
         } else {
             alert('Login falhou. Verifique suas credenciais.');
         }

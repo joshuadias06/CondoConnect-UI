@@ -60,10 +60,23 @@ body {
 }
 
 /* Conta do Usuário */
+.user-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .user-icon img {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
+    width: 35px; /* Ajuste para garantir que o ícone não fique cortado */
+    height: 35px; /* Ajuste para garantir que o ícone não fique cortado */
+    border-radius: 50%; /* Para o ícone ficar redondo */
+    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Para o efeito de hover */
+}
+
+/* Hover no ícone do usuário */
+.user-icon:hover img {
+    transform: scale(1.1); /* Aumenta o tamanho do ícone ao passar o mouse */
+    border-color: #F1A526; /* Cor do hover no ícone de usuário */
 }
 
 /* Container do Catálogo */

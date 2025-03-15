@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamentos</title>
+    <title>Agendamento de Espaço</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/agender/agender.css">
     <link rel="icon" href="/assets/login/logo.png" type="image/png">
@@ -24,10 +24,45 @@
         </nav>
     </header>
 
+    <main class="agendamento-container">
+        <div class="calendar-container">
+            <h1>Agendar Espaço</h1>
+            <div id="calendar"></div>
+        </div>
+        
+        <div class="form-container">
+            <h2>Formulário de Agendamento</h2>
+            <form id="agendamento-form">
+                <label for="espaco">Espaço Condominio</label>
+                <select id="espaco" name="espaco" required>
+                    <option value="SALAO_DE_FESTAS">Salão de Festas</option>
+                    <option value="PISCINA">Piscina</option>
+                    <option value="CHURRASQUEIRA">Churrasqueira</option>
+                    <option value="QUADRA">Quadra</option>
+                    <option value="ACADEMIA">Academia</option>
+                    <option value="ESPACO_GOURMET">Espaço Gourmet</option>
+                </select>
+                <label for="solicitante">Solicitante</label>
+                <input type="text" id="solicitante" name="solicitante" required>
+                
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" required>
+                
+                <label for="dataHora">Data e Hora</label>
+                <input type="datetime-local" id="dataHora" name="dataHora" required>
+                
+                <button type="submit">Agendar</button>
+            </form>
+        </div>
+    </main>
+
     <footer class="footer">
         <p>&copy; 2025 CondoConnect. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="/scripts/product/product.js"></script>
+    <!-- Adicionando FullCalendar -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.js"></script>
+    <!-- Script de agendamento -->
+    <script src="/scripts/agender/agender.js"></script>
 </body>
 </html>

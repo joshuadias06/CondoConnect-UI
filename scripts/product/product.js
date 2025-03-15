@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function carregarProdutos() {
         try {
-            const response = await fetch("http://localhost:8080/produtos"); // URL correta do back-end
+            const response = await fetch("http://localhost:8081/produtos"); // URL correta do back-end
             if (!response.ok) {
                 throw new Error(`Erro HTTP: ${response.status}`);
             }

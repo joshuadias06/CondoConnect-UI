@@ -57,7 +57,6 @@ document.getElementById("register-form").addEventListener("submit", function(eve
 
     // Se todos os campos forem válidos, o formulário pode ser enviado
     if (valid) {
-        this.submit();
     }
 });
 

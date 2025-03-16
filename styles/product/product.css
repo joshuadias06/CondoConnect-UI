@@ -160,18 +160,65 @@ input {
     border-radius: 5px;
 }
 
-/* Botão salvar */
+/* Botão salvar - Estilo azul igual ao botão de adicionar produto */
 .save-btn {
-    background: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    background-color: #007bff;  /* Cor de fundo azul */
+    color: white;               /* Texto branco */
+    padding: 10px 20px;         /* Espaçamento interno */
+    border: none;               /* Sem borda */
+    border-radius: 5px;         /* Bordas arredondadas */
+    cursor: pointer;           /* Cursor de pointer */
+    font-size: 16px;            /* Tamanho da fonte */
+    transition: background 0.3s ease-in-out, transform 0.2s;  /* Efeito suave de transição */
 }
 
 .save-btn:hover {
-    background: #0056b3;
+    background-color: #0056b3;  /* Cor de fundo azul mais escuro ao passar o mouse */
+    transform: scale(1.05);      /* Efeito de aumentar um pouco ao passar o mouse */
+}
+
+
+/* Estilo para o popup */
+#productPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Garantir que o popup fique acima dos outros elementos */
+}
+
+#productPopup .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#productPopup .popup-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#productPopup .popup-content input,
+#productPopup .popup-content select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#productPopup .popup-content .close-btn {
+    text-align: right;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 

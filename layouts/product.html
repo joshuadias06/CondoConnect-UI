@@ -35,37 +35,35 @@
                 <option value="categoria3">Roupas</option>
                 <option value="categoria4">Móveis</option>
             </select>
-            <!-- Botão para abrir o popup -->
-<button class="add-product-btn" id="openPopup">+</button>
-
-<!-- Popup Modal -->
-<div id="productPopup" class="popup">
-    <div class="popup-content">
-        <span class="close-btn" id="closePopup">&times;</span>
-        <h2>Adicionar Produto</h2>
-        <form id="productForm">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-
-            <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" name="descricao" required>
-
-            <label for="img">URL da Imagem:</label>
-            <input type="text" id="img" name="img" required>
-
-            <label for="proprietario">Proprietário:</label>
-            <input type="text" id="proprietario" name="proprietario" required>
-
-            <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" name="telefone" required>
-
-            <button type="submit" class="save-btn">Salvar</button>
-        </form>
-    </div>
-</div>
-
+            <button id="openPopup" class="add-product-btn">+</button>
         </div>
         <div id="produtos" class="produtos-grid"></div>
+
+        <!-- Popup para Adicionar Produto -->
+        <div id="productPopup">
+            <div class="popup-content">
+                <span id="closePopup" class="close-btn">X</span>
+                <h2>Adicionar Produto</h2>
+                <form id="productForm">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" name="descricao" required>
+
+                    <label for="img">Imagem URL:</label>
+                    <input type="text" id="img" name="img" required>
+
+                    <label for="proprietario">Proprietário:</label>
+                    <input type="text" id="proprietario" name="proprietario" required>
+
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" name="telefone" required>
+
+                    <button type="submit">Salvar Produto</button>
+                </form>
+            </div>
+        </div>
 
     </main>
 

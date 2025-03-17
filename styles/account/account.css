@@ -120,7 +120,10 @@ button#delete-account:hover {
 
 button:disabled {
     background-color: #ccc;
-    cursor: not-allowed;
+}
+
+button:disabled:hover {
+    background-color: #ccc; /* Mantém a cor do fundo sem alteração */
 }
 
 /* Rodapé */

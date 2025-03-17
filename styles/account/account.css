@@ -9,8 +9,10 @@ body, html {
     height: 100%;
     font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
+    min-height: 100vh; /* Garante que a página ocupe toda a altura da tela */
 }
 
+/* Remover estilo de link */
 a {
     text-decoration: none;
     color: inherit;
@@ -137,5 +139,33 @@ button:disabled:hover {
     color: #ffffff;
     padding: 20px;
     text-align: center;
+    position: relative;
+    width: 100%;
     margin-top: 50px;
+    display: flex;
+    justify-content: space-between;  /* Alinha o texto e a imagem */
+    align-items: center;  /* Alinha verticalmente */
+    opacity: 0;  /* Inicialmente invisível */
+    transition: opacity 0.5s ease-in-out;
 }
+
+.footer .footer-left {
+    flex: 1;
+    text-align: left;
+}
+
+.footer .footer-right {
+    flex: 1;
+    text-align: right;
+}
+
+.footer img {
+    width: 50px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+}
+
+/* Quando a página é rolada para baixo, o footer se torna visível */
+body.scrolled .footer {
+    opacity: 1;  /* Torna o footer visível */
+}
+

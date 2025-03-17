@@ -24,3 +24,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // Adicionar ouvintes de eventos para verificar os campos
     form.addEventListener("input", checkFormValidity);
 });
+
+document.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {  // A partir de 50px de rolagem, o footer aparece
+        document.body.classList.add("scrolled");
+    } else {
+        document.body.classList.remove("scrolled");
+    }
+});

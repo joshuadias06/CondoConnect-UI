@@ -11,6 +11,11 @@ body, html {
     background-color: #f9f9f9;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* Menu Superior */
 .header {
     display: flex;
@@ -123,7 +128,7 @@ button:disabled {
 }
 
 button:disabled:hover {
-    background-color: #ccc; /* Mantém a cor do fundo sem alteração */
+    background-color: #ccc;
 }
 
 /* Rodapé */

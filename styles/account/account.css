@@ -59,12 +59,12 @@ a {
 /* Estilização dos Drawers */
 .drawer {
     width: 100%;
-    background: #fff;
     border-bottom: 1px solid #ccc;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
 
+/* Cabeçalho do Drawer */
 .drawer-header {
     display: flex;
     justify-content: space-between;
@@ -74,13 +74,16 @@ a {
     font-weight: bold;
     font-size: 18px;
     cursor: pointer;
+    width: 100%;
 }
 
+/* Nome do Drawer à Esquerda */
 .drawer-header span {
     flex: 1;
     text-align: left;
 }
 
+/* Botão do Drawer à Direita */
 .drawer-toggle {
     background: none;
     border: none;
@@ -89,19 +92,58 @@ a {
     transition: transform 0.3s;
 }
 
+/* Conteúdo do Drawer (Escondido por padrão) */
 .drawer-content {
     max-height: 0;
     overflow: hidden;
-    padding: 0 20px;
     background: white;
     border-top: 1px solid #ddd;
     transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
 }
 
+/* Quando o Drawer estiver ativo */
 .drawer.active .drawer-content {
-    max-height: 500px; /* Ajuste conforme o conteúdo */
+    max-height: 500px; /* Ajuste conforme necessário */
     padding: 15px 20px;
 }
+
+/* Estilização do Formulário dentro do Drawer */
+.drawer-content form {
+    width: 50%; /* O formulário ocupa 50% da largura da tela */
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: none;
+}
+
+/* Inputs do Formulário */
+.drawer-content input {
+    width: 100%;
+    padding: 8px; /* Reduzi um pouco o padding */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px; /* Reduzi um pouco o tamanho da fonte */
+}
+
+/* Estilização do Botão */
+.drawer-content button {
+    width: 25%; /* O botão ocupa 25% da largura da tela */
+    padding: 8px; /* Reduzi um pouco o tamanho do botão */
+    font-size: 14px; /* Fonte menor */
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+/* Para alinhar corretamente à esquerda */
+.drawer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha todo o conteúdo à esquerda */
+}
+
 
 /* Botões */
 button {
@@ -166,6 +208,7 @@ button#delete-account:hover {
     height: auto;
 }
 
+/* Footer só aparece ao rolar */
 body.scrolled .footer {
     opacity: 1;
 }

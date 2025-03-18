@@ -32,3 +32,16 @@ document.addEventListener("scroll", () => {
         document.body.classList.remove("scrolled");
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Seleciona todos os botões de toggle dos drawers
+    const drawerToggles = document.querySelectorAll(".drawer-toggle");
+
+    drawerToggles.forEach((button) => {
+        button.addEventListener("click", function () {
+            const drawer = this.closest(".drawer");
+            drawer.classList.toggle("active");
+        });
+    });
+});
+

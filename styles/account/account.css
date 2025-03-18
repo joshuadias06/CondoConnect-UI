@@ -56,54 +56,70 @@ a {
     background-color: #d18c1f;
 }
 
-/* Estilização dos Drawers */
+/* Melhorando o Estilo do Drawer */
 .drawer {
     width: 100%;
-    border-bottom: 1px solid #ccc;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
+    transition: max-height 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 /* Cabeçalho do Drawer */
 .drawer-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Alinha o título à esquerda */
     align-items: center;
     padding: 15px 20px;
-    background-color: #f1f1f1;
+    background: #f8f8f8;
     font-weight: bold;
     font-size: 18px;
     cursor: pointer;
-    width: 100%;
+    border-bottom: 1px solid #ddd;
+    position: relative; /* Aqui adicionamos o "position: relative" para que a setinha seja posicionada em relação a esse container */
 }
 
-/* Nome do Drawer à Esquerda */
+/* Título do Drawer à esquerda */
 .drawer-header span {
-    flex: 1;
     text-align: left;
+    flex: 1; /* Faz com que o título ocupe o espaço disponível */
 }
 
-/* Botão do Drawer à Direita */
+/* Ícone do Drawer (seta) totalmente à direita */
 .drawer-toggle {
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     transition: transform 0.3s;
+    color: #333;
+    position: absolute;  /* Mudamos para absolute para garantir que ele saia do fluxo normal */
+    right: 20px; /* Agora a setinha vai ser fixada no canto direito */
 }
 
-/* Conteúdo do Drawer (Escondido por padrão) */
+/* Ícone de seta girando ao abrir */
+.drawer.active .drawer-toggle {
+    transform: rotate(180deg);
+}
+
+/* Conteúdo do Drawer */
 .drawer-content {
     max-height: 0;
     overflow: hidden;
+    padding: 0 20px;
     background: white;
     border-top: 1px solid #ddd;
     transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
 }
 
 /* Quando o Drawer estiver ativo */
+.drawer.active {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
 .drawer.active .drawer-content {
-    max-height: 500px; /* Ajuste conforme necessário */
+    max-height: 500px;
     padding: 15px 20px;
 }
 
@@ -143,7 +159,6 @@ a {
     flex-direction: column;
     align-items: flex-start; /* Alinha todo o conteúdo à esquerda */
 }
-
 
 /* Botões */
 button {

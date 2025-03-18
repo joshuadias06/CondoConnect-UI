@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener("scroll", () => {
-    if (window.scrollY > 20) {  // A partir de 50px de rolagem, o footer aparece
+    if (window.scrollY > 0) {  // A partir de 50px de rolagem, o footer aparece
         document.body.classList.add("scrolled");
     } else {
         document.body.classList.remove("scrolled");

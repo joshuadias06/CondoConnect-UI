@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Conta</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
     
@@ -36,11 +35,7 @@
                     <label for="phone" class="block text-sm font-medium">Telefone:</label>
                     <input type="text" id="phone" name="phone" class="w-full border rounded-md p-2">
                 </div>
-                <div class="col-span-2">
-                    <label for="password" class="block text-sm font-medium">Senha:</label>
-                    <input type="password" id="password" name="password" class="w-full border rounded-md p-2">
-                </div>
-                <button type="submit" class="col-span-2 bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition">Atualizar</button>
+                <button type="button" id="update-button" class="col-span-2 bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition">Atualizar</button>
             </form>
         </div>
 
@@ -54,10 +49,19 @@
         <p>&copy; 2025 CondoConnect. Todos os direitos reservados.</p>
     </footer>
     
-    <script>
-        document.getElementById("user-form").addEventListener("input", function() {
-            document.querySelector("button[type='submit']").disabled = !Array.from(this.elements).every(input => input.value.trim());
-        });
-    </script>
+    <div id="password-popup" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 class="text-xl font-semibold mb-4">Confirme sua Senha</h2>
+            <label for="confirm-password" class="block text-sm font-medium">Senha:</label>
+            <input type="password" id="confirm-password" class="w-full border rounded-md p-2 mb-4">
+            <div class="flex justify-end space-x-2">
+                <button id="cancel-popup" class="bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-gray-500 transition">Cancelar</button>
+                <button id="confirm-update" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/account/account.js"></script>
+    <script src="/scripts/account/accountForm.js"></script>
 </body>
 </html>

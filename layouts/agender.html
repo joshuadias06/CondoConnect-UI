@@ -1,68 +1,207 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento de Espaço</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/agender/agender.css">
-    <link rel="icon" href="/assets/login/logo.png" type="image/png">
+    <title>Agendamento de Espaços</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            height: calc(100vh - 60px);
+        }
+        #calendar {
+            flex: 3;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 70%;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .calendar-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5px;
+            width: 100%;
+        }
+        .calendar-day, .empty {
+            border: 1px solid #ddd;
+            padding: 30px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .calendar-day {
+            background: #fff;
+            cursor: pointer;
+        }
+        #booking-form {
+            flex: 1;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        input, select, button {
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 18px;
+            padding: 15px;
+        }
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .calendar-nav button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-            <img src="/assets/login/logo.png" alt="Logo">
-        </div>
-        <nav class="menu">
-            <ul>
-                <li><a href="/layouts/product.html">Produtos</a></li>
-                <li><a href="/layouts/agender">Agendamento</a></li>
-                <li><a href="/layouts/account.html" class="user-icon">
-                    <img src="/assets/product/user.png" alt="Conta do Usuário">
-                </a></li>
-            </ul>
-        </nav>
+    <header>
+        <h1>Agendamento de Espaços</h1>
     </header>
-
-    <main class="agendamento-container">
-        <div class="calendar-container">
-            <h1>Agendar Espaço</h1>
+    
+    <main>
+        <div class="container">
             <div id="calendar"></div>
-        </div>
-        
-        <div class="form-container">
-            <h2>Formulário de Agendamento</h2>
-            <form id="agendamento-form">
-                <label for="espaco">Espaço Condominio</label>
-                <select id="espaco" name="espaco" required>
-                    <option value="SALAO_DE_FESTAS">Salão de Festas</option>
-                    <option value="PISCINA">Piscina</option>
-                    <option value="CHURRASQUEIRA">Churrasqueira</option>
-                    <option value="QUADRA">Quadra</option>
-                    <option value="ACADEMIA">Academia</option>
-                    <option value="ESPACO_GOURMET">Espaço Gourmet</option>
+            <form id="booking-form">
+                <h2>Fazer Agendamento</h2>
+                <label for="date">Data:</label>
+                <input type="date" id="date" required>
+                
+                <label for="time">Hora:</label>
+                <input type="time" id="time" required>
+                
+                <label for="space">Espaço:</label>
+                <select id="space" required>
+                    <option value="salao_de_festas">Salão de Festas</option>
+                    <option value="piscina">Piscina</option>
+                    <option value="churrasqueira">Churrasqueira</option>
+                    <option value="quadra">Quadra</option>
+                    <option value="academia">Academia</option>
+                    <option value="espaco_gourmet">Espaço Gourmet</option>
                 </select>
-                <label for="solicitante">Solicitante</label>
-                <input type="text" id="solicitante" name="solicitante" required>
                 
-                <label for="telefone">Telefone</label>
-                <input type="tel" id="telefone" name="telefone" required>
-                
-                <label for="dataHora">Data e Hora</label>
-                <input type="datetime-local" id="dataHora" name="dataHora" required>
+                <label for="name">Nome:</label>
+                <input type="text" id="name" required>
                 
                 <button type="submit">Agendar</button>
             </form>
         </div>
     </main>
-
-    <footer class="footer">
-        <p>&copy; 2025 CondoConnect. Todos os direitos reservados.</p>
-    </footer>
-
-    <!-- Adicionando FullCalendar -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.js"></script>
-    <!-- Script de agendamento -->
-    <script src="/scripts/agender/agender.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const calendar = document.getElementById("calendar");
+            let today = new Date();
+            let currentMonth = today.getMonth();
+            let currentYear = today.getFullYear();
+            
+            function generateCalendar(month, year) {
+                let firstDay = new Date(year, month, 1).getDay();
+                let daysInMonth = new Date(year, month + 1, 0).getDate();
+                let weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+                
+                let calendarHTML = `<div class='calendar-nav'>
+                                        <button id='prevMonth'>&lt;</button>
+                                        <h2>${new Date(year, month).toLocaleString('default', { month: 'long' })} ${year}</h2>
+                                        <button id='nextMonth'>&gt;</button>
+                                    </div>`;
+                calendarHTML += `<div class='calendar-header'>${weekDays.map(day => `<div>${day}</div>`).join('')}</div>`;
+                calendarHTML += "<div class='calendar-grid'>";
+                
+                for (let i = 0; i < firstDay; i++) {
+                    calendarHTML += "<div class='empty'></div>";
+                }
+                
+                for (let day = 1; day <= daysInMonth; day++) {
+                    calendarHTML += `<div class='calendar-day' data-day='${day}'>${day}</div>`;
+                }
+                calendarHTML += "</div>";
+                
+                calendar.innerHTML = calendarHTML;
+                
+                document.getElementById("prevMonth").addEventListener("click", prevMonth);
+                document.getElementById("nextMonth").addEventListener("click", nextMonth);
+            }
+            
+            function prevMonth() {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                generateCalendar(currentMonth, currentYear);
+            }
+            
+            function nextMonth() {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                generateCalendar(currentMonth, currentYear);
+            }
+            
+            generateCalendar(currentMonth, currentYear);
+        });
+    </script>
 </body>
 </html>

@@ -60,6 +60,7 @@
             border: none;
             font-size: 24px;
             cursor: pointer;
+            color: black; /* Cor preta para as setas */
         }
         .calendar-day, .empty {
             border: 1px solid #ddd;
@@ -115,11 +116,8 @@
             <div id="calendar"></div>
             <form id="booking-form">
                 <h2>Fazer Agendamento</h2>
-                <label for="date">Data:</label>
-                <input type="date" id="date" required>
-                
-                <label for="time">Hora:</label>
-                <input type="time" id="time" required>
+                <label for="datetime">Data e Hora:</label>
+                <input type="datetime-local" id="datetime" required>
                 
                 <label for="space">Espaço:</label>
                 <select id="space" required>

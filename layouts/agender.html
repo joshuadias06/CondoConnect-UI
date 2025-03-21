@@ -48,12 +48,18 @@
             border-collapse: collapse;
         }
         .calendar-header {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             width: 100%;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .calendar-header button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
         }
         .calendar-day, .empty {
             border: 1px solid #ddd;
@@ -96,20 +102,6 @@
             margin-top: 20px;
             font-size: 18px;
             padding: 15px;
-        }
-        .calendar-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            margin-bottom: 10px;
-            width: 100%;
-        }
-        .calendar-nav button {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -159,25 +151,25 @@
                 let daysInMonth = new Date(year, month + 1, 0).getDate();
                 let weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
                 
-                let calendarHTML = `<div class='calendar-nav'>
+                let calendarHTML = `<div class='calendar-header'>
                                         <button id='prevMonth'>&lt;</button>
                                         <h2>${new Date(year, month).toLocaleString('default', { month: 'long' })} ${year}</h2>
                                         <button id='nextMonth'>&gt;</button>
                                     </div>`;
-                calendarHTML += `<div class='calendar-header'>${weekDays.map(day => `<div>${day}</div>`).join('')}</div>`;
+                calendarHTML += `<div class='calendar-grid'>${weekDays.map(day => `<div>${day}</div>`).join('')}</div>`;
                 calendarHTML += "<div class='calendar-grid'>";
-                
+
                 for (let i = 0; i < firstDay; i++) {
                     calendarHTML += "<div class='empty'></div>";
                 }
-                
+
                 for (let day = 1; day <= daysInMonth; day++) {
                     calendarHTML += `<div class='calendar-day' data-day='${day}'>${day}</div>`;
                 }
                 calendarHTML += "</div>";
-                
+
                 calendar.innerHTML = calendarHTML;
-                
+
                 document.getElementById("prevMonth").addEventListener("click", prevMonth);
                 document.getElementById("nextMonth").addEventListener("click", nextMonth);
             }

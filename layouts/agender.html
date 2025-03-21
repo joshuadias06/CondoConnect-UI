@@ -1,119 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento de Espaços</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            width: 100vw;
-            height: 100vh;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            width: 100%;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .container {
-            display: flex;
-            width: 100%;
-            height: calc(100vh - 60px);
-        }
-        #calendar {
-            flex: 3;
-            background: white;
-            padding: 20px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 70%;
-        }
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .calendar-header button {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: black; /* Cor preta para as setas */
-        }
-        .calendar-day, .empty {
-            border: 1px solid #ddd;
-            padding: 30px;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .calendar-day {
-            background: #fff;
-            cursor: pointer;
-        }
-        #booking-form {
-            flex: 1;
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            width: 30%;
-        }
-        label {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        input, select, button {
-            padding: 10px;
-            margin-top: 5px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-top: 20px;
-            font-size: 18px;
-            padding: 15px;
-        }
-    </style>
+    <title>Calendário de Agendamentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/agender/agender.css"> <!-- Atualizado o caminho do CSS -->
+    <link rel="icon" href="/assets/login/logo.png" type="image/png">
 </head>
 <body>
-    <header>
-        <h1>Agendamento de Espaços</h1>
+    <header class="header">
+        <div class="logo">
+            <img src="/assets/login/logo.png" alt="Logo">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="/layouts/product.html">Produtos</a></li>
+                <li><a href="/layouts/agender.html">Agendamento</a></li>
+                <li><a href="/layouts/account.html" class="user-icon">
+                    <img src="/assets/product/user.png" alt="Conta do Usuário" style="height: 30px; width: auto;"> <!-- Ajustado o tamanho do ícone -->
+                </a></li>
+            </ul>
+        </nav>
     </header>
-    
+
     <main>
         <div class="container">
             <div id="calendar"></div>
+            
             <form id="booking-form">
                 <h2>Fazer Agendamento</h2>
                 <label for="datetime">Data e Hora:</label>
@@ -136,62 +50,11 @@
             </form>
         </div>
     </main>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const calendar = document.getElementById("calendar");
-            let today = new Date();
-            let currentMonth = today.getMonth();
-            let currentYear = today.getFullYear();
-            
-            function generateCalendar(month, year) {
-                let firstDay = new Date(year, month, 1).getDay();
-                let daysInMonth = new Date(year, month + 1, 0).getDate();
-                let weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
-                
-                let calendarHTML = `<div class='calendar-header'>
-                                        <button id='prevMonth'>&lt;</button>
-                                        <h2>${new Date(year, month).toLocaleString('default', { month: 'long' })} ${year}</h2>
-                                        <button id='nextMonth'>&gt;</button>
-                                    </div>`;
-                calendarHTML += `<div class='calendar-grid'>${weekDays.map(day => `<div>${day}</div>`).join('')}</div>`;
-                calendarHTML += "<div class='calendar-grid'>";
 
-                for (let i = 0; i < firstDay; i++) {
-                    calendarHTML += "<div class='empty'></div>";
-                }
+    <footer class="footer">
+        <p>&copy; 2025 CondoConnect. Todos os direitos reservados.</p>
+    </footer>
 
-                for (let day = 1; day <= daysInMonth; day++) {
-                    calendarHTML += `<div class='calendar-day' data-day='${day}'>${day}</div>`;
-                }
-                calendarHTML += "</div>";
-
-                calendar.innerHTML = calendarHTML;
-
-                document.getElementById("prevMonth").addEventListener("click", prevMonth);
-                document.getElementById("nextMonth").addEventListener("click", nextMonth);
-            }
-            
-            function prevMonth() {
-                currentMonth--;
-                if (currentMonth < 0) {
-                    currentMonth = 11;
-                    currentYear--;
-                }
-                generateCalendar(currentMonth, currentYear);
-            }
-            
-            function nextMonth() {
-                currentMonth++;
-                if (currentMonth > 11) {
-                    currentMonth = 0;
-                    currentYear++;
-                }
-                generateCalendar(currentMonth, currentYear);
-            }
-            
-            generateCalendar(currentMonth, currentYear);
-        });
-    </script>
+    <script src="/scripts/agender/agender.js"></script> <!-- Atualizado o caminho do JS -->
 </body>
 </html>

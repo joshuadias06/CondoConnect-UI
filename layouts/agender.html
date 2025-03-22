@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/agender/agender.css"> <!-- Atualizado o caminho do CSS -->
     <link rel="icon" href="/assets/login/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <header class="header">
@@ -30,8 +31,8 @@
             
             <form id="booking-form">
                 <h2>Fazer Agendamento</h2>
-                <label for="datetime">Data e Hora:</label>
-                <input type="datetime-local" id="datetime" req  uired>
+                <label for="date">Data:</label>
+                <input type="date" id="date" required>
                 
                 <label for="space">Espaço:</label>
                 <select id="space" required>

@@ -16,7 +16,7 @@ function renderCalendar(month, year) {
     `;
     calendar.appendChild(header);
 
-    const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+    const daysOfWeek = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
     const daysGrid = document.createElement('div');
     daysGrid.classList.add('calendar-days');
     
@@ -70,7 +70,7 @@ function changeMonth(direction) {
 // Função para obter o nome do mês
 function getMonthName(month) {
     const months = [
-        'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
     ];
     return months[month - 1];
 }

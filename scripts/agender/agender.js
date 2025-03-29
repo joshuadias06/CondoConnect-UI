@@ -2,8 +2,18 @@
 let currentMonth = new Date().getMonth() + 1;  // Mês atual (começando de 1 para Janeiro)
 let currentYear = new Date().getFullYear();  // Ano atual
 
+// Cores associadas aos espaços de agendamento
+const coresEspacos = {
+    SALAO_DE_FESTAS: 'red',
+    PISCINA: 'blue',
+    CHURRASQUEIRA: 'orange',
+    QUADRA: 'green',
+    ACADEMIA: 'purple',
+    ESPACO_GOURMET: 'yellow'
+};
+
 // Função para renderizar o calendário
-function renderCalendar(month, year) {
+function renderCalendar(month, year, agendamentos) {
     const calendar = document.getElementById('calendar');
     calendar.innerHTML = ''; // Limpa o calendário anterior
     
@@ -40,10 +50,22 @@ function renderCalendar(month, year) {
                 dayElement.classList.add('disabled');
             } else {
                 dayElement.textContent = dayCounter;
-                dayCounter++;
                 dayElement.addEventListener('click', function() {
-                    // Ação ao clicar no dia
+                    openModal(dayCounter, month, year, agendamentos);
                 });
+                
+                // Adicionar bolinhas para os agendamentos
+                agendamentos.forEach(agendamento => {
+                    const agendamentoDate = new Date(agendamento.data);
+                    if (agendamentoDate.getDate() === dayCounter && agendamentoDate.getMonth() + 1 === month && agendamentoDate.getFullYear() === year) {
+                        const bolinha = document.createElement('span');
+                        bolinha.classList.add('bolinha');
+                        bolinha.style.backgroundColor = coresEspacos[agendamento.area];
+                        dayElement.appendChild(bolinha);
+                    }
+                });
+
+                dayCounter++;
             }
             daysGrid.appendChild(dayElement);
         }
@@ -64,7 +86,7 @@ function changeMonth(direction) {
         currentYear--;
     }
 
-    renderCalendar(currentMonth, currentYear);
+    fetchAgendamentos(); // Recarrega os agendamentos para o mês
 }
 
 // Função para obter o nome do mês
@@ -75,7 +97,52 @@ function getMonthName(month) {
     return months[month - 1];
 }
 
+// Função para abrir o modal com os detalhes do agendamento
+function openModal(day, month, year, agendamentos) {
+    const modal = document.getElementById("modal");
+    const modalDetails = document.getElementById("modal-agendamento-details");
+
+    // Filtra os agendamentos para o dia selecionado
+    const agendamentosDia = agendamentos.filter(agendamento => {
+        const agendamentoDate = new Date(agendamento.data);
+        return agendamentoDate.getDate() === day && agendamentoDate.getMonth() + 1 === month && agendamentoDate.getFullYear() === year;
+    });
+
+    // Preenche o modal com os detalhes dos agendamentos
+    let detalhes = '';
+    agendamentosDia.forEach(agendamento => {
+        detalhes += `
+            <strong>Espaço:</strong> ${agendamento.area}<br>
+            <strong>Hora:</strong> ${agendamento.hora}<br>
+            <strong>Responsável:</strong> ${agendamento.responsavel}<br><br>
+        `;
+    });
+
+    modalDetails.innerHTML = detalhes;
+    modal.style.display = "block";
+}
+
+// Função para fechar o modal
+function closeModal() {
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+}
+
+// Adiciona o evento de fechar no botão de fechar do modal
+document.getElementById("close-modal").addEventListener('click', closeModal);
+
+// Função para buscar agendamentos
+function fetchAgendamentos() {
+    const dataInicio = new Date(currentYear, currentMonth - 1, 1).toISOString().split('T')[0];
+    const dataFim = new Date(currentYear, currentMonth, 0).toISOString().split('T')[0];
+
+    fetch(`http://localhost:8081/agendamentos?inicio=${dataInicio}&fim=${dataFim}`)
+        .then(response => response.json())
+        .then(data => renderCalendar(currentMonth, currentYear, data))
+        .catch(error => console.error('Erro ao obter agendamentos:', error));
+}
+
 // Inicializa o calendário ao carregar a página
 document.addEventListener('DOMContentLoaded', function() {
-    renderCalendar(currentMonth, currentYear);  // Inicializa o calendário com o mês e ano atual
+    fetchAgendamentos();  // Busca os agendamentos e renderiza o calendário
 });

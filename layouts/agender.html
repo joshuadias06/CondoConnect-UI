@@ -28,7 +28,15 @@
     <main>
         <div class="container">
             <div id="calendar"></div>
-            
+
+            <!-- Modal de detalhes do agendamento -->
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span id="close-modal" class="close">&times;</span>
+                    <div id="modal-agendamento-details"></div>
+                </div>
+            </div>
+
             <form id="booking-form">
                 <h2>Fazer Agendamento</h2>
                 <label for="date">Data:</label>
@@ -47,7 +55,8 @@
                 
                 <label for="name">Nome:</label>
                 <input type="text" id="name" required>
-                <label for="name">Telefone:</label>
+
+                <label for="phone">Telefone:</label>
                 <input type="text" id="phone" required>
                 
                 <button type="submit">Agendar</button>

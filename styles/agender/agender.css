@@ -76,6 +76,7 @@ html, body {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 750px;  /* Aumenta a altura do calendário */
 }
 
 .calendar-header {
@@ -118,20 +119,27 @@ html, body {
     cursor: not-allowed;
 }
 
-.bolinhas-container {
+.calendar-day {
+    position: relative;
     display: flex;
-    justify-content: center;
-    gap: 4px;
-    margin-top: 5px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    min-height: 95px;
+}
+
+.bolinha-container {
+    display: flex;  /* Alinha as bolinhas na horizontal */
+    gap: 3px; /* Adiciona um pequeno espaço entre elas */
+    margin-top: 3px;
 }
 
 .bolinha {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    display: inline-block;
 }
-
 
 /* Formulário */
 #booking-form {
@@ -200,7 +208,6 @@ input[type="date"]:hover, input[type="date"]:focus {
     background-color: #F1A526;
     color: white;
     font-size: 16px;
-    border-radius: 8px;
     width: 100%;
     margin-top: auto;
     position: absolute;

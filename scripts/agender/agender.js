@@ -61,6 +61,10 @@ function renderCalendar(month, year, agendamentos) {
                     openModal(dayCounter, month, year, agendamentos);
                 });
 
+                // Criar um contêiner para as bolinhas
+                const bolinhaContainer = document.createElement('div');
+                bolinhaContainer.classList.add('bolinha-container');
+
                 // Adicionar bolinhas para os agendamentos
                 agendamentos.forEach(agendamento => {
                     const agendamentoDate = new Date(agendamento.data);
@@ -68,9 +72,14 @@ function renderCalendar(month, year, agendamentos) {
                         const bolinha = document.createElement('span');
                         bolinha.classList.add('bolinha');
                         bolinha.style.backgroundColor = coresEspacos[agendamento.area] || 'gray';
-                        dayElement.appendChild(bolinha);
+                        bolinhaContainer.appendChild(bolinha);
                     }
                 });
+
+                // Adiciona o contêiner ao dia, se houver bolinhas
+                if (bolinhaContainer.children.length > 0) {
+                    dayElement.appendChild(bolinhaContainer);
+                }
 
                 dayCounter++;
             }
@@ -159,13 +168,59 @@ function fetchAgendamentos() {
     const dataFim = new Date(currentYear, currentMonth, 0).toISOString().split('T')[0];
 
     fetch(`http://localhost:8081/agendamentos?inicio=${dataInicio}&fim=${dataFim}`)
-        .then(response => {
-            if (!response.ok) throw new Error("Erro ao carregar os agendamentos.");
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => renderCalendar(currentMonth, currentYear, data))
         .catch(error => console.error('Erro ao obter agendamentos:', error));
 }
 
 // Inicializa o calendário ao carregar a página
 document.addEventListener('DOMContentLoaded', fetchAgendamentos);
+
+
+function openModal(day, month, year, agendamentos) {
+    const modal = document.getElementById("modal");
+    const modalDetails = document.getElementById("modal-agendamento-details");
+
+    if (!modal || !modalDetails) {
+        console.error("Modal ou modal details não encontrado.");
+        return;
+    }
+
+    const agendamentosDia = agendamentos.filter(agendamento => {
+        const agendamentoDate = new Date(agendamento.data);
+        return (
+            agendamentoDate.getDate() === day &&
+            agendamentoDate.getMonth() + 1 === month &&
+            agendamentoDate.getFullYear() === year
+        );
+    });
+
+    let detalhes = agendamentosDia.length > 0 ? '' : '<p>Sem agendamentos para este dia.</p>';
+    
+    agendamentosDia.forEach(agendamento => {
+        detalhes += `
+            <div class="agendamento-item">
+                <strong>Espaço:</strong> ${agendamento.area}<br>
+                <strong>Hora:</strong> ${agendamento.hora}<br>
+                <strong>Responsável:</strong> ${agendamento.responsavel}<br>
+            </div>
+        `;
+    });
+
+    modalDetails.innerHTML = detalhes;
+    modal.style.display = "flex"; // Exibe o modal
+}
+
+// Fecha o modal
+function closeModal() {
+    const modal = document.getElementById("modal");
+    if (modal) modal.style.display = "none";
+}
+
+// Evento de fechar o modal
+document.addEventListener('DOMContentLoaded', function() {
+    const closeModalButton = document.getElementById("close-modal");
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', closeModal);
+    }
+});

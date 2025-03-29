@@ -118,6 +118,21 @@ html, body {
     cursor: not-allowed;
 }
 
+.bolinhas-container {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 5px;
+}
+
+.bolinha {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
 /* Formulário */
 #booking-form {
     width: 25%;

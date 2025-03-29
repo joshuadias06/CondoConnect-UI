@@ -15,8 +15,14 @@ const coresEspacos = {
 // Função para renderizar o calendário
 function renderCalendar(month, year, agendamentos) {
     const calendar = document.getElementById('calendar');
-    calendar.innerHTML = ''; // Limpa o calendário anterior
+    if (!calendar) {
+        console.error("Elemento 'calendar' não encontrado.");
+        return;
+    }
     
+    calendar.innerHTML = ''; // Limpa o calendário anterior
+
+    // Cabeçalho do calendário
     const header = document.createElement('div');
     header.classList.add('calendar-header');
     header.innerHTML = `
@@ -26,13 +32,14 @@ function renderCalendar(month, year, agendamentos) {
     `;
     calendar.appendChild(header);
 
-    const daysOfWeek = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
+    const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
     const daysGrid = document.createElement('div');
     daysGrid.classList.add('calendar-days');
-    
+
+    // Adiciona os dias da semana
     daysOfWeek.forEach(day => {
         const dayElement = document.createElement('div');
-        dayElement.classList.add('calendar-day');
+        dayElement.classList.add('calendar-day', 'week-day');
         dayElement.textContent = day;
         daysGrid.appendChild(dayElement);
     });
@@ -40,12 +47,12 @@ function renderCalendar(month, year, agendamentos) {
     const firstDay = new Date(year, month - 1, 1).getDay();
     const lastDate = new Date(year, month, 0).getDate();
     let dayCounter = 1;
-    
+
     for (let i = 0; i < 6; i++) {
         for (let j = 0; j < 7; j++) {
             const dayElement = document.createElement('div');
             dayElement.classList.add('calendar-day');
-            
+
             if (i === 0 && j < firstDay || dayCounter > lastDate) {
                 dayElement.classList.add('disabled');
             } else {
@@ -53,14 +60,14 @@ function renderCalendar(month, year, agendamentos) {
                 dayElement.addEventListener('click', function() {
                     openModal(dayCounter, month, year, agendamentos);
                 });
-                
+
                 // Adicionar bolinhas para os agendamentos
                 agendamentos.forEach(agendamento => {
                     const agendamentoDate = new Date(agendamento.data);
                     if (agendamentoDate.getDate() === dayCounter && agendamentoDate.getMonth() + 1 === month && agendamentoDate.getFullYear() === year) {
                         const bolinha = document.createElement('span');
                         bolinha.classList.add('bolinha');
-                        bolinha.style.backgroundColor = coresEspacos[agendamento.area];
+                        bolinha.style.backgroundColor = coresEspacos[agendamento.area] || 'gray';
                         dayElement.appendChild(bolinha);
                     }
                 });
@@ -86,7 +93,7 @@ function changeMonth(direction) {
         currentYear--;
     }
 
-    fetchAgendamentos(); // Recarrega os agendamentos para o mês
+    fetchAgendamentos(); // Recarrega os agendamentos para o novo mês
 }
 
 // Função para obter o nome do mês
@@ -102,19 +109,29 @@ function openModal(day, month, year, agendamentos) {
     const modal = document.getElementById("modal");
     const modalDetails = document.getElementById("modal-agendamento-details");
 
-    // Filtra os agendamentos para o dia selecionado
+    if (!modal || !modalDetails) {
+        console.error("Modal ou modal details não encontrado.");
+        return;
+    }
+
     const agendamentosDia = agendamentos.filter(agendamento => {
         const agendamentoDate = new Date(agendamento.data);
-        return agendamentoDate.getDate() === day && agendamentoDate.getMonth() + 1 === month && agendamentoDate.getFullYear() === year;
+        return (
+            agendamentoDate.getDate() === day &&
+            agendamentoDate.getMonth() + 1 === month &&
+            agendamentoDate.getFullYear() === year
+        );
     });
 
-    // Preenche o modal com os detalhes dos agendamentos
-    let detalhes = '';
+    let detalhes = agendamentosDia.length > 0 ? '' : '<p>Sem agendamentos para este dia.</p>';
+    
     agendamentosDia.forEach(agendamento => {
         detalhes += `
-            <strong>Espaço:</strong> ${agendamento.area}<br>
-            <strong>Hora:</strong> ${agendamento.hora}<br>
-            <strong>Responsável:</strong> ${agendamento.responsavel}<br><br>
+            <div class="agendamento-item">
+                <strong>Espaço:</strong> ${agendamento.area}<br>
+                <strong>Hora:</strong> ${agendamento.hora}<br>
+                <strong>Responsável:</strong> ${agendamento.responsavel}<br>
+            </div>
         `;
     });
 
@@ -125,11 +142,16 @@ function openModal(day, month, year, agendamentos) {
 // Função para fechar o modal
 function closeModal() {
     const modal = document.getElementById("modal");
-    modal.style.display = "none";
+    if (modal) modal.style.display = "none";
 }
 
-// Adiciona o evento de fechar no botão de fechar do modal
-document.getElementById("close-modal").addEventListener('click', closeModal);
+// Adiciona o evento de fechamento ao botão de fechar do modal
+document.addEventListener('DOMContentLoaded', function() {
+    const closeModalButton = document.getElementById("close-modal");
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', closeModal);
+    }
+});
 
 // Função para buscar agendamentos
 function fetchAgendamentos() {
@@ -137,12 +159,13 @@ function fetchAgendamentos() {
     const dataFim = new Date(currentYear, currentMonth, 0).toISOString().split('T')[0];
 
     fetch(`http://localhost:8081/agendamentos?inicio=${dataInicio}&fim=${dataFim}`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error("Erro ao carregar os agendamentos.");
+            return response.json();
+        })
         .then(data => renderCalendar(currentMonth, currentYear, data))
         .catch(error => console.error('Erro ao obter agendamentos:', error));
 }
 
 // Inicializa o calendário ao carregar a página
-document.addEventListener('DOMContentLoaded', function() {
-    fetchAgendamentos();  // Busca os agendamentos e renderiza o calendário
-});
+document.addEventListener('DOMContentLoaded', fetchAgendamentos);

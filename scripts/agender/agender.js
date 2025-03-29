@@ -68,7 +68,8 @@ function renderCalendar(month, year, agendamentos) {
                 // Adicionar bolinhas para os agendamentos
                 agendamentos.forEach(agendamento => {
                     const agendamentoDate = new Date(agendamento.data);
-                    if (agendamentoDate.getDate() === dayCounter && agendamentoDate.getMonth() + 1 === month && agendamentoDate.getFullYear() === year) {
+                    // Ajuste no comparador de datas para corrigir o erro do dia
+                    if (agendamentoDate.getUTCDate() === dayCounter && agendamentoDate.getUTCMonth() + 1 === month && agendamentoDate.getUTCFullYear() === year) {
                         const bolinha = document.createElement('span');
                         bolinha.classList.add('bolinha');
                         bolinha.style.backgroundColor = coresEspacos[agendamento.area] || 'gray';
@@ -113,7 +114,7 @@ function getMonthName(month) {
     return months[month - 1];
 }
 
-// Função para abrir o modal com os detalhes do agendamento
+// Função para abrir o modal
 function openModal(day, month, year, agendamentos) {
     const modal = document.getElementById("modal");
     const modalDetails = document.getElementById("modal-agendamento-details");
@@ -123,42 +124,60 @@ function openModal(day, month, year, agendamentos) {
         return;
     }
 
-    const agendamentosDia = agendamentos.filter(agendamento => {
-        const agendamentoDate = new Date(agendamento.data);
-        return (
-            agendamentoDate.getDate() === day &&
-            agendamentoDate.getMonth() + 1 === month &&
-            agendamentoDate.getFullYear() === year
-        );
-    });
+    // Criação da data formatada para passar para o endpoint
+    const selectedDate = new Date(year, month - 1, day);
+    const formattedDate = selectedDate.toISOString().split('T')[0]; // Formato: YYYY-MM-DD
 
-    let detalhes = agendamentosDia.length > 0 ? '' : '<p>Sem agendamentos para este dia.</p>';
-    
-    agendamentosDia.forEach(agendamento => {
-        detalhes += `
-            <div class="agendamento-item">
-                <strong>Espaço:</strong> ${agendamento.area}<br>
-                <strong>Hora:</strong> ${agendamento.hora}<br>
-                <strong>Responsável:</strong> ${agendamento.responsavel}<br>
-            </div>
-        `;
-    });
+    // Fazer o fetch para o endpoint /dia
+    fetch(`http://localhost:8081/agendamentos/dia?data=${formattedDate}`)
+        .then(response => response.json())
+        .then(data => {
+            // Exibir os agendamentos no modal
+            let detalhes = data.length > 0 ? '' : '<p>Sem agendamentos para este dia.</p>';
+            
+            data.forEach(agendamento => {
+                detalhes += `
+                    <div class="agendamento-item">
+                        <strong>Espaço:</strong> ${agendamento.area}<br>
+                        <strong>Hora:</strong> ${agendamento.hora}<br>
+                        <strong>Responsável:</strong> ${agendamento.responsavel}<br>
+                    </div>
+                `;
+            });
 
-    modalDetails.innerHTML = detalhes;
-    modal.style.display = "flex"; // Exibe o modal
+            modalDetails.innerHTML = detalhes;
+            modal.style.display = "block"; // Exibe o modal
+        })
+        .catch(error => {
+            console.error('Erro ao obter os agendamentos do dia:', error);
+            modalDetails.innerHTML = '<p>Erro ao carregar os agendamentos.</p>';
+            modal.style.display = "block"; // Exibe o modal mesmo com erro
+        });
 }
 
-// Fecha o modal
+// Função para fechar o modal
 function closeModal() {
     const modal = document.getElementById("modal");
     if (modal) modal.style.display = "none"; // Esconde o modal
 }
 
-// Evento de fechar o modal
+// Evento de fechar o modal ao clicar fora do modal
 document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById("modal");
     const closeModalButton = document.getElementById("close-modal");
+
+    // Fecha o modal se o usuário clicar fora do conteúdo do modal
+    if (modal) {
+        modal.addEventListener('click', function(event) {
+            // Verifica se o clique foi fora do conteúdo do modal
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    }
+
     if (closeModalButton) {
-        closeModalButton.addEventListener('click', closeModal);
+        closeModalButton.addEventListener('click', closeModal); // Fecha o modal ao clicar no botão de fechar
     }
 });
 

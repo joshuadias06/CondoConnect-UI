@@ -19,7 +19,7 @@ function renderCalendar(month, year, agendamentos) {
         console.error("Elemento 'calendar' não encontrado.");
         return;
     }
-    
+
     calendar.innerHTML = ''; // Limpa o calendário anterior
 
     // Cabeçalho do calendário
@@ -145,16 +145,16 @@ function openModal(day, month, year, agendamentos) {
     });
 
     modalDetails.innerHTML = detalhes;
-    modal.style.display = "block";
+    modal.style.display = "flex"; // Exibe o modal
 }
 
-// Função para fechar o modal
+// Fecha o modal
 function closeModal() {
     const modal = document.getElementById("modal");
-    if (modal) modal.style.display = "none";
+    if (modal) modal.style.display = "none"; // Esconde o modal
 }
 
-// Adiciona o evento de fechamento ao botão de fechar do modal
+// Evento de fechar o modal
 document.addEventListener('DOMContentLoaded', function() {
     const closeModalButton = document.getElementById("close-modal");
     if (closeModalButton) {
@@ -175,52 +175,3 @@ function fetchAgendamentos() {
 
 // Inicializa o calendário ao carregar a página
 document.addEventListener('DOMContentLoaded', fetchAgendamentos);
-
-
-function openModal(day, month, year, agendamentos) {
-    const modal = document.getElementById("modal");
-    const modalDetails = document.getElementById("modal-agendamento-details");
-
-    if (!modal || !modalDetails) {
-        console.error("Modal ou modal details não encontrado.");
-        return;
-    }
-
-    const agendamentosDia = agendamentos.filter(agendamento => {
-        const agendamentoDate = new Date(agendamento.data);
-        return (
-            agendamentoDate.getDate() === day &&
-            agendamentoDate.getMonth() + 1 === month &&
-            agendamentoDate.getFullYear() === year
-        );
-    });
-
-    let detalhes = agendamentosDia.length > 0 ? '' : '<p>Sem agendamentos para este dia.</p>';
-    
-    agendamentosDia.forEach(agendamento => {
-        detalhes += `
-            <div class="agendamento-item">
-                <strong>Espaço:</strong> ${agendamento.area}<br>
-                <strong>Hora:</strong> ${agendamento.hora}<br>
-                <strong>Responsável:</strong> ${agendamento.responsavel}<br>
-            </div>
-        `;
-    });
-
-    modalDetails.innerHTML = detalhes;
-    modal.style.display = "flex"; // Exibe o modal
-}
-
-// Fecha o modal
-function closeModal() {
-    const modal = document.getElementById("modal");
-    if (modal) modal.style.display = "none";
-}
-
-// Evento de fechar o modal
-document.addEventListener('DOMContentLoaded', function() {
-    const closeModalButton = document.getElementById("close-modal");
-    if (closeModalButton) {
-        closeModalButton.addEventListener('click', closeModal);
-    }
-});

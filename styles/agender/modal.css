@@ -13,7 +13,6 @@
     max-height: 80vh; /* Limitar a altura do modal */
     overflow-y: auto; /* Permitir rolagem se o conteúdo for maior que o modal */
     z-index: 1000;
-    display: flex;
     flex-direction: column;
     align-items: stretch;
 }

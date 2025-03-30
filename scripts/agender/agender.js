@@ -118,7 +118,17 @@ function openModal(day, month, year) {
         .then(response => response.json())
         .then(data => {
             console.log("Resposta recebida:", data);
-            let detalhes = data.length > 0 ? '<table><tr><th>Espaço</th><th>Nome</th><th>Telefone</th></tr>' : '<p>Sem agendamentos para este dia.</p>';
+            let detalhes = data.length > 0 ? 
+                `<table class="table">
+                    <thead>
+                        <tr>
+                            <th>Espaço</th>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                        </tr>
+                    </thead>
+                    <tbody>` : 
+                '<p>Sem agendamentos para este dia.</p>';
             
             data.forEach(agendamento => {
                 detalhes += `
@@ -130,7 +140,7 @@ function openModal(day, month, year) {
                 `;
             });
             
-            if (data.length > 0) detalhes += '</table>';
+            if (data.length > 0) detalhes += '</tbody></table>';
             
             modalDetails.innerHTML = detalhes;
             modal.style.display = "block";

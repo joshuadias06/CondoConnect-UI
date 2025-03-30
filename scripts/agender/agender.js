@@ -118,17 +118,19 @@ function openModal(day, month, year) {
         .then(response => response.json())
         .then(data => {
             console.log("Resposta recebida:", data);
-            let detalhes = data.length > 0 ? '' : '<p>Sem agendamentos para este dia.</p>';
+            let detalhes = data.length > 0 ? '<table><tr><th>Espaço</th><th>Nome</th><th>Telefone</th></tr>' : '<p>Sem agendamentos para este dia.</p>';
             
             data.forEach(agendamento => {
                 detalhes += `
-                    <div class="agendamento-item">
-                        <strong>Espaço:</strong> ${agendamento.area}<br>
-                        <strong>Hora:</strong> ${agendamento.hora}<br>
-                        <strong>Responsável:</strong> ${agendamento.responsavel}<br>
-                    </div>
+                    <tr>
+                        <td>${agendamento.area}</td>
+                        <td>${agendamento.solicitante}</td>
+                        <td>${agendamento.telefone}</td>
+                    </tr>
                 `;
             });
+            
+            if (data.length > 0) detalhes += '</table>';
             
             modalDetails.innerHTML = detalhes;
             modal.style.display = "block";
